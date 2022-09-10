@@ -6,3 +6,6 @@ commands:
    lightning:
       usage: /lightning
       description: Strike lightning!
+   fireball:
+      usage: /fireball
+      description: Shoot fireball! (/fireball <POWER> <VELOCITY> for custom explosion power and velocity)

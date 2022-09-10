@@ -4,29 +4,20 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.SmallFireball;
 
-import net.md_5.bungee.api.ChatColor;
-
-public class Lightning implements CommandExecutor {
+public class Firecharge implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		if (label.equalsIgnoreCase("lightning")) {
+		if (label.equalsIgnoreCase("firecharge")) {
 			if (sender instanceof Player) {
 				Player player = (Player) sender;
 				
-				if (args.length == 0) {
-					player.getWorld().strikeLightning(player.getTargetBlock(null, 300).getLocation());
-					
-					return true;
-				}
-				else {
-					player.sendMessage(ChatColor.RED + "Usage: /lightning");
-					
-					return true;
-				}
+				SmallFireball firecharge = player.getWorld().spawn(player.getEyeLocation(), SmallFireball.class);
+				firecharge.setShooter(player);
+				firecharge.setVelocity(player.getLocation().getDirection());
 			}
 		}
-		
 		return true;
 	}
 }
